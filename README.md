@@ -7,8 +7,8 @@ ECAP APIs. Prices come from configuration (`rates`): JD quotes by contract.
 ```yaml
 omnibus:
     gateways:
-        jdl-express:
-            factory: jdl-express
+        jdl_express:
+            factory: jdl_express
             options:
                 app_key: '%env(JDL_APP_KEY)%'
                 app_secret: '%env(JDL_APP_SECRET)%'

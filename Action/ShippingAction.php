@@ -46,7 +46,7 @@ final class ShippingAction implements ActionInterface, ApiAwareInterface
         ], static fn ($v) => null !== $v && '' !== $v));
         $number = (string) ($data['waybillCode'] ?? '');
         if ('' === $number) {
-            throw new CarrierException('jdl-express', 'JD Logistics issued no waybill.');
+            throw new CarrierException('jdl_express', 'JD Logistics issued no waybill.');
         }
         $content = null;
         $url = null;
@@ -59,7 +59,7 @@ final class ShippingAction implements ActionInterface, ApiAwareInterface
             }
         } catch (CarrierException) {
         }
-        $request->setResult(new Label('jdl-express', $number, $content, Label::PDF, $url, 'https://www.jdl.com/orderSearch?waybillCodes='.rawurlencode($number)));
+        $request->setResult(new Label('jdl_express', $number, $content, Label::PDF, $url, 'https://www.jdl.com/orderSearch?waybillCodes='.rawurlencode($number)));
     }
 
     private static function contact(Address $a): array

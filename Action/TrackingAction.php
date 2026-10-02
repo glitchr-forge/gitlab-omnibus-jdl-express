@@ -37,7 +37,7 @@ final class TrackingAction implements ActionInterface, ApiAwareInterface
             $events[] = new TrackingEvent(new \DateTimeImmutable((string) ($trace['operateTime'] ?? 'now'), new \DateTimeZone('Asia/Shanghai')), self::status($trace['operateState'] ?? $trace['state'] ?? null, $trace['operateRemark'] ?? $trace['remark'] ?? null), (string) ($trace['operateRemark'] ?? $trace['remark'] ?? ''), $trace['operateSite'] ?? null, isset($trace['operateState']) ? (string) $trace['operateState'] : null);
         }
         usort($events, static fn (TrackingEvent $a, TrackingEvent $b) => $a->at <=> $b->at);
-        $request->setResult(new TrackingModel('jdl-express', $request->trackingNumber, $events ? $events[array_key_last($events)]->status : TrackingStatus::UNKNOWN, $events));
+        $request->setResult(new TrackingModel('jdl_express', $request->trackingNumber, $events ? $events[array_key_last($events)]->status : TrackingStatus::UNKNOWN, $events));
     }
 
     private static function status(mixed $state, ?string $remark): TrackingStatus

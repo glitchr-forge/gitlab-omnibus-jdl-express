@@ -44,16 +44,16 @@ final class Api
             $status = $response->getStatusCode();
             $data = json_decode($response->getContent(false), true);
         } catch (HttpExceptionInterface|\JsonException $e) {
-            throw new CarrierException('jdl-express', 'JD Logistics request failed: '.$e->getMessage(), null, $e);
+            throw new CarrierException('jdl_express', 'JD Logistics request failed: '.$e->getMessage(), null, $e);
         }
         if ($status >= 400 || !\is_array($data)) {
-            throw new CarrierException('jdl-express', sprintf('JD Logistics answered HTTP %d.', $status));
+            throw new CarrierException('jdl_express', sprintf('JD Logistics answered HTTP %d.', $status));
         }
         if (isset($data['code']) && 0 !== (int) $data['code']) {
-            throw new CarrierException('jdl-express', (string) ($data['msg'] ?? $data['message'] ?? 'JD Logistics refused the call.'), (string) $data['code']);
+            throw new CarrierException('jdl_express', (string) ($data['msg'] ?? $data['message'] ?? 'JD Logistics refused the call.'), (string) $data['code']);
         }
         if (isset($data['statusCode']) && 0 !== (int) $data['statusCode']) {
-            throw new CarrierException('jdl-express', (string) ($data['statusMessage'] ?? 'JD Logistics refused the request.'), (string) $data['statusCode']);
+            throw new CarrierException('jdl_express', (string) ($data['statusMessage'] ?? 'JD Logistics refused the request.'), (string) $data['statusCode']);
         }
 
         return $data['data'] ?? $data;

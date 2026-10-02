@@ -26,7 +26,7 @@ final class JdlExpressGatewayFactory extends GatewayFactory
     protected function populateConfig(Config $config): void
     {
         $config->defaults([
-            'omnibus.factory_name' => 'jdl-express',
+            'omnibus.factory_name' => 'jdl_express',
             'omnibus.factory_title' => 'JD Logistics',
             'omnibus.required_options' => ['app_key', 'app_secret', 'access_token', 'customer_code'],
             'sandbox' => false,
